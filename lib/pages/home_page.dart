@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_vacuna/pages/scaner_qr_page.dart';
 import 'package:flutter_vacuna/ui/general/colors.dart';
 import 'package:flutter_vacuna/ui/widgets/item_list_widget.dart';
 
@@ -53,7 +54,12 @@ class HomePage extends StatelessWidget {
                 height: 52,
                 margin: const EdgeInsets.all(12.0),
                 child: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ScanerQrPage()));
+                  },
                   label: Text(
                     "Escanear QR",
                     style: TextStyle(
