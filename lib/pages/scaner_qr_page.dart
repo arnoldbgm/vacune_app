@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_vacuna/pages/register_page.dart';
 import 'package:flutter_vacuna/ui/general/colors.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
@@ -94,7 +95,7 @@ class _ScanerQrPageState extends State<ScanerQrPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   const Text(
+                  const Text(
                     "Carnet escaneado: ",
                     style: TextStyle(
                       color: kFontPrimaryColor,
@@ -116,7 +117,27 @@ class _ScanerQrPageState extends State<ScanerQrPage> {
                     width: double.infinity,
                     height: 45,
                     child: ElevatedButton(
-                      onPressed: isUrl ? () {} : null,
+                      onPressed:
+                          // isUrl
+                          //     ? () {
+                          //         Navigator.pop(context);
+                          //         Navigator.push(
+                          //           context,
+                          //           MaterialPageRoute(
+                          //             builder: (context) => RegisterPage(),
+                          //           ),
+                          //         );
+                          //       }
+                          //     : null,
+
+                          () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPage(url: "https://tecsup.webex.com/recordingservice/sites/tecsup/recording/9398d865bd23103aaef700505681c822/playback"),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: kFontPrimaryColor,
                       ),
