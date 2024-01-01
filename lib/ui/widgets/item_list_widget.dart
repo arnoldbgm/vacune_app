@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_vacuna/models/licens_models.dart';
 import 'package:flutter_vacuna/ui/general/colors.dart';
 
 class ItemListWidget extends StatelessWidget {
-  const ItemListWidget({
-    super.key,
-  });
+  LicenseModel model;
+
+
+  ItemListWidget({ required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class ItemListWidget extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  "Arnold Gallegos",
+                  model.name,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
@@ -73,7 +75,7 @@ class ItemListWidget extends StatelessWidget {
                   ],
                 ),
                 Text(
-                  "70036504",
+                  model.dni,
                   style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w600),
                 ),
               ],

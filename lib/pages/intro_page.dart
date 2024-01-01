@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_vacuna/pages/home_page.dart';
 import 'package:flutter_vacuna/ui/general/colors.dart';
 
-class IntroPage extends StatelessWidget {
-  const IntroPage({Key? key}) : super(key: key);
+class IntroPage extends StatefulWidget {
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -42,17 +46,18 @@ class IntroPage extends StatelessWidget {
               height: 45,
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(),));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kFontPrimaryColor,
                 ),
                 child: Text(
                   "Iniciar ahora",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0
-                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 18.0),
                 ),
               ),
             ),

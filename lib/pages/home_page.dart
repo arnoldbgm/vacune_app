@@ -1,11 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_vacuna/db/db_admin.dart';
+import 'package:flutter_vacuna/models/licens_models.dart';
 import 'package:flutter_vacuna/pages/scaner_qr_page.dart';
 import 'package:flutter_vacuna/ui/general/colors.dart';
 import 'package:flutter_vacuna/ui/widgets/item_list_widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List<LicenseModel> license = [];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getLicense();
+  }
+
+  Future<void> getLicense() async {
+    final dataFetch = await DBAdmin.db.getDataLicense();
+    license = dataFetch;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +59,20 @@ class HomePage extends StatelessWidget {
                       "Mis carnets registrados",
                       style: TextStyle(fontSize: 16.0),
                     ),
-                    ItemListWidget(),
-                    ItemListWidget(),
-                    ItemListWidget(),
+                    Column(
+                      children: [
+                        ListView.builder(
+                          physics: const BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: license.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ItemListWidget(
+                              model: license[index],
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                     const SizedBox(
                       height: 70.0,
                     )

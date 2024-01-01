@@ -37,10 +37,18 @@ class DBAdmin {
     return res;
   }
 
-  Future<List> getData() async {
+  Future getData() async {
     final db = await getDataBase();
     List res = await db!.rawQuery("SELECT * FROM LICENSE");
     print(res);
     return res;
+  }
+
+  Future<List<LicenseModel>> getDataLicense() async {
+    List<LicenseModel> data = [];
+    final Database? db = await getDataBase();
+    List res = await db!.rawQuery("SELECT * FROM LICENSE");
+    data = res.map<LicenseModel>((e) => LicenseModel.FromJson(e)).toList();
+    return data;
   }
 }
