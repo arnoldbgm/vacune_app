@@ -10,6 +10,7 @@ class InputsTextfieldWidgets extends StatelessWidget {
   int? maxLength;
   TextInputType? txtInpType;
   List<TextInputFormatter>? inputFormatters;
+  TextEditingController controller;
 
   InputsTextfieldWidgets(
       {required this.labelForm,
@@ -17,7 +18,8 @@ class InputsTextfieldWidgets extends StatelessWidget {
       required this.pathIcon,
       this.maxLength,
       this.txtInpType,
-      this.inputFormatters});
+      this.inputFormatters,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +51,18 @@ class InputsTextfieldWidgets extends StatelessWidget {
                 )
               ],
             ),
-            child: TextField(
+            child: TextFormField(
+              controller: controller,
               maxLength: maxLength,
               keyboardType: txtInpType,
               inputFormatters: inputFormatters,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "El campo es obligatorio";
+                }
+
+                return null;
+              },
               decoration: InputDecoration(
                 counterText: "",
                 filled: true,
