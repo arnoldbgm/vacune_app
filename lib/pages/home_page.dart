@@ -29,6 +29,10 @@ class _HomePageState extends State<HomePage> {
     setState(() {});
   }
 
+  showDetail() {
+    return;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,16 +65,27 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Column(
                       children: [
-                        ListView.builder(
-                          physics: const BouncingScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: license.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ItemListWidget(
-                              model: license[index],
-                            );
-                          },
-                        ),
+                        license.isNotEmpty
+                            ? RefreshIndicator(
+                                onRefresh: () async {
+                                  getLicense();
+                                },
+                                child: ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: license.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return ItemListWidget(
+                                      model: license[index],
+                                    );
+                                  },
+                                ),
+                              )
+                            : Image.asset(
+                                "assets/images/box.png",
+                                height: 100,
+                              ),
                       ],
                     ),
                     const SizedBox(

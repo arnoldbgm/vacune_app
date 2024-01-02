@@ -6,8 +6,7 @@ import 'package:flutter_vacuna/ui/general/colors.dart';
 class ItemListWidget extends StatelessWidget {
   LicenseModel model;
 
-
-  ItemListWidget({ required this.model});
+  ItemListWidget({required this.model});
 
   @override
   Widget build(BuildContext context) {

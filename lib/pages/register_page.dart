@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_vacuna/db/db_admin.dart';
 import 'package:flutter_vacuna/models/licens_models.dart';
+import 'package:flutter_vacuna/pages/home_page.dart';
 import 'package:flutter_vacuna/ui/general/colors.dart';
 import 'package:flutter_vacuna/ui/widgets/inputs_textfield_widgets.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -118,9 +119,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     );
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                        (route) => false);
                   }
                 });
-                DBAdmin.db.getData();
               },
               label: Text(
                 "Escanear QR",
